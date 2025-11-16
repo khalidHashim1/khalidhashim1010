@@ -1,1 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khalid Adil Hashim - CV</title>
+
+  <style>
+    /* -------------------------
+       Base Styles & Variables
+    -------------------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #2b2d42;
+      --accent-color: #0077b6;
+      --background: #f8f9fa;
+      --button-bg: #0077b6;
+      --text-color: #333;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--background);
+      color: var(--text-color);
+      line-height: 1.6;
+      margin: 0 auto;
+      max-width: 900px;
+      padding: 20px;
+    }
+
+    /* -------------------------
+       Header
+    -------------------------- */
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      color: var(--primary-color);
+      font-size: 2.2rem;
+    }
+
+    header p {
+      color: #555;
+      font-size: 1.1rem;
+    }
+
+    /* -------------------------
+       Sections
+    -------------------------- */
+    section {
+      background: #fff;
+      margin: 20px 0;
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    h2 {
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--accent-color);
+      display: inline-block;
+      padding-bottom: 4px;
+      margin-bottom: 12px;
+    }
+
+    /* -------------------------
+       Buttons
+    -------------------------- */
+    .btn-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      background: var(--button-bg);
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0, 119, 182, 0.3);
+    }
+
+    /* -------------------------
+       Lists
+    -------------------------- */
+    ul {
+      margin-left: 20px;
+      margin-top: 8px;
+    }
+
+    ul li {
+      margin-bottom: 6px;
+    }
+
+    /* -------------------------
+       Job Experience
+    -------------------------- */
+    .job h3 {
+      color: var(--accent-color);
+    }
+
+    .job p {
+      font-weight: 500;
+      color: #444;
+      margin-top: 4px;
+      margin-bottom: 6px;
+    }
+
+    /* -------------------------
+       Footer
+    -------------------------- */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    /* -------------------------
+       Responsive Design
+    -------------------------- */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      .btn-container {
+        flex-direction: column;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* -------------------------
+       Print Styling (Optional)
+    -------------------------- */
+    @media print {
+      body {
+        background: #fff;
+        color: #000;
+      }
+      section {
+        box-shadow: none;
+        border: 1px solid #ccc;
+      }
+      .btn-container {
+        display: none;
+      }
+      footer {
+        margin-top: 20px;
+      }
+    }
+  </style>
+	  <!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-ETJEC17YGM"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-ETJEC17YGM');
+	  
+	  
+			<!-- API in aws tag (gtag.js) -->
+				fetch("https://4bpzs727p7.execute-api.us-east-1.amazonaws.com/log", {
+		  method: "POST",
+		  headers: {
+			"Content-Type": "application/json"
+		  },
+		  body: JSON.stringify({
+			id: crypto.randomUUID(),  // generates a unique id (browser support required)
+			referrer: document.referrer,
+			section: window.location.hash || "/",
+			eventType: "pageview"
+		  })
+		});
+
+
+	</script>
+</head>
+
+<body>
+  <!-- ========================
+       HEADER
+  ========================== -->
+  <header>
+    <h1>Khalid Adil Hashim</h1>
+    <p>Technical Support | AWS Cloud Practitioner</p>
+  </header>
+
+  <!-- ========================
+       CONTACT
+  ========================== -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:khalidhashim1422@gmail.com">khalidhashim1422@gmail.com</a></p>
+    <p>Phone: <a href="tel:0558056375">0558056375</a></p>
+    <p>Location: Riyadh, Saudi Arabia</p>
+
+    <div class="btn-container">
+      <a class="btn" href="KhalidAdilHashim-CV.pdf?v=1" download>📄 Download CV</a>
+      <a class="btn" href="contactForm.html" target="_blank" >✉️ Contact Me</a>
+      <a class="btn" href="https://github.com/khalidHashim1" target="_blank" rel="noopener noreferrer">💻 GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/khalid-binhashim-8639a7271/" target="_blank" rel="noopener noreferrer">🔗 LinkedIn</a>
+    </div>
+
+  <!-- ========================
+       PROFESSIONAL SUMMARY
+  ========================== -->
+  <section id="summary">
+    <h2>Professional Summary</h2>
+    <p>
+      Technical Support with a Computer Science background and an AWS Cloud Practitioner certification. Skilled in troubleshooting and system optimization, with a strong interest in cloud technologies and infrastructure automation.
+    </p>
+  </section>
+
+  <!-- ========================
+       EXPERIENCE
+  ========================== -->
+  <section id="experience">
+    <h2>Professional Experience</h2>
+
+    <div class="job">
+      <h3>Technical Support Specialist</h3>
+      <p><strong>CCC by STC – Security Operations Center (911)</strong> | Riyadh | <em>Aug 2024 – Present</em></p>
+      <ul>
+        <li>Manage technical issues via ticketing system and perform hardware troubleshooting.</li>
+        <li>Ensure uninterrupted 911 operations by resolving incidents promptly or escalating as needed.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <h3>Technical Support Level 2</h3>
+      <p><strong>Tasheel Information Technology – Ministry of Interior Project</strong> | <em>Oct 2023 – Aug 2024</em></p>
+      <ul>
+        <li>Delivered technical support and training for Ministry of Interior systems.</li>
+        <li>Coordinated between clients and developers to meet business requirements efficiently.</li>
+        <li>Enhanced issue resolution process to increase client satisfaction.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========================
+       SKILLS
+  ========================== -->
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <ul>
+      <li>Technical Support & Troubleshooting</li>
+      <li>Hardware Maintenance & System Configuration</li>
+      <li>Ticketing Systems & Client Communication</li>
+      <li>Cloud Computing (AWS Certified Cloud Practitioner)</li>
+    </ul>
+  </section>
+
+  <!-- ========================
+       CERTIFICATIONS
+  ========================== -->
+  <section id="certifications">
+  <h2>Certifications</h2>
+  <ul>
+    <li>
+      <strong>
+        <a href="https://www.credly.com/badges/c6cf68a9-9081-4d56-93d0-9e1be4468b94/linked_in?t=t02mp7" target="_blank" rel="noopener noreferrer">
+          AWS Certified Cloud Practitioner
+        </a>
+      </strong> — Amazon Web Services (2024)
+    </li>
+  </ul>
+</section>
+
+
+  <!-- ========================
+       EDUCATION
+  ========================== -->
+  <section id="education">
+    <h2>Education</h2>
+    <p>
+      <strong>Bachelor of Computer Science</strong><br />
+      Prince Sattam Bin Abdulaziz University, Al-Kharj, Saudi Arabia<br />
+      Graduated: 2023 | GPA: Very Good
+    </p>
+  </section>
+
+  <!-- ========================
+       PROJECTS
+  ========================== -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <ul>
+		  <li><strong>Portfolio Website:</strong> Personal site showcasing professional profile and projects.</li>
+		  <li><strong>Mood Tracker:</strong> Mood Tracker hosted using EC2 instance. <a href="https://moodtracker1.khalidhashim.com/" target="_blank" rel="noopener noreferrer">Mood Tracker</a>. </li>
+		  <li><strong>Inventory Manager:</strong> Serverless Full-stack inventory app hosted on S3 with API Gateway, Lambda, DynamoDB, and CloudFront. <a href="https://inverntory.khalidhashim.com/" target="_blank" rel="noopener noreferrer">Inventory Manager</a>.</li>
+		  <li><strong>Text-to-Speech with AWS Polly:</strong> Serverless app converting text to speech with AWS Polly, S3, Lambda, and CloudFront. <a href="https://texttospeach.khalidhashim.com/" target="_blank" rel="noopener noreferrer">Text to Speech</a>.</li>		
+		  <li><strong>Other Projects:</strong> Available on my
+        <a href="https://github.com/khalidHashim1" target="_blank" rel="noopener noreferrer">GitHub Profile</a>.
+      </li>
+    </ul>
+  </section>
+  
+
+  <!-- ========================
+       FOOTER
+  ========================== -->
+  <footer>
+    <p>© 2025 Khalid Adil Hashim. Hosted using S3 & CloudFront .</p>
+  </footer>
+</body>
+</html>
 
