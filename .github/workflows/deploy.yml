@@ -1,1 +1,88 @@
+name: Deploy Frontend and Lambda
 
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+
+      ##############################
+      # 1. UPLOAD FRONTEND TO S3   #
+      ##############################
+      - name: Sync frontend to S3
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        with:
+          args: --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          SOURCE_DIR: "frontend"
+
+
+
+      ##############################
+      # 2. DEPLOY LAMBDA FUNCTION  #
+      ##############################
+      - name: Deploy Lambda function
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          LAMBDA_FUNCTION_NAME: ${{ secrets.LAMBDA_FUNCTION_NAME }}
+        run: |
+          echo "Zipping single lambda_function.py..."
+
+          cd backend
+          zip ../lambda.zip lambda_function.py
+          cd ..
+
+          echo "Uploading lambda.zip to AWS Lambda..."
+          aws lambda update-function-code \
+            --function-name "$LAMBDA_FUNCTION_NAME" \
+            --zip-file fileb://lambda.zip
+
+          echo "Lambda deployment completed."
+
+
+      ###########################################
+      # 3. INVALIDATE CLOUDFRONT CACHE          #
+      ###########################################
+      - name: Invalidate CloudFront cache
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+        run: |
+          TS=$(date +%s)
+
+          cat > invalidation.json <<EOF
+          {
+            "Paths": {
+              "Quantity": 1,
+              "Items": ["/*"]
+            },
+            "CallerReference": "$TS"
+          }
+          EOF
+
+          echo "=== Invalidation JSON ==="
+          cat invalidation.json
+
+          echo "=== Sending invalidation request ==="
+          aws cloudfront create-invalidation \
+            --distribution-id $DISTRIBUTION_ID \
+            --invalidation-batch file://invalidation.json
+
+          echo "=== Invalidation complete ==="
