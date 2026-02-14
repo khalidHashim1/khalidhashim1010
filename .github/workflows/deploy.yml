@@ -71,6 +71,7 @@ jobs:
           LAMBDA_FUNCTION_NAME: ${{ secrets.LAMBDA_FUNCTION_NAME }}
         run: |
           cd backend
+          pip install -r requirements.txt -t
           zip ../lambda.zip lambda_function.py
           cd ..
 
