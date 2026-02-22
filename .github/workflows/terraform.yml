@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repo
+      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Install Terraform
+      # 2️⃣ Setup Terraform
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
@@ -27,17 +27,17 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-north-1
+          aws-region: ${{ secrets.AWS_REGION }}
 
-      # 4️⃣ Terraform init
+      # 4️⃣ Terraform Init (pull remote state from S3)
       - name: Terraform Init
-        run: terraform -chdir=terraform init
+        run: terraform -chdir=terraform init -input=false -reconfigure
 
       # 5️⃣ Terraform Plan
       - name: Terraform Plan
         run: terraform -chdir=terraform plan
 
-      # 6️⃣ Terraform Apply (Optional, only main)
+      # 6️⃣ Terraform Apply (only on main branch)
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         run: terraform -chdir=terraform apply -auto-approve
