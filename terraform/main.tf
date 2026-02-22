@@ -1,10 +1,12 @@
-resource "aws_acm_certificate" "cert" {
-  domain_name       = "khalidhashim.com"
-  validation_method = "DNS"
+resource "aws_s3_bucket" "portfolio" {
+  bucket = "khalidhashim.com"
+}
 
-  subject_alternative_names = ["www.khalidhashim.com"]
+resource "aws_s3_bucket_public_access_block" "portfolio" {
+  bucket = aws_s3_bucket.portfolio.id
 
-  lifecycle {
-    create_before_destroy = true
-  }
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
 }
